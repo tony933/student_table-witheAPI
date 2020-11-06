@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="/css/app.css">
+</head>
+
+<body class="home">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/table">Disply</a></li>
+        <li><a href="/dash">dashbord</a></li>
+    </ul>
+    <div>
+        <label class="lab"> FirstName </label>
+        <input type="text" id="firs" class="input">
+        <label class="lab"> age </label>
+        <input type="text" id="age" class="input">
+        <label class="lab"> Department </label>
+        <input type="text" id="dep" class="input">
+        <label class="lab"> stage </label>
+        <input type="text" id="sta" class="input">
+        <label class="lab"> material </label>
+        <input type="text" id="mat" class="input">
+        <label class="lab"> degre</label>
+        <input type="number" id="nam" class="input">
+        <a href="/table"> <button type="submit" onclick="loginForm()" class="btn"> insert</button></a>
+
+
+
+    </div>
+    <script>
+        const loginForm = async() => {
+            let firstname = document.getElementById('firs').value,
+                age = document.getElementById('age').value,
+                depart = document.getElementById('dep').value,
+                stage = document.getElementById('sta').value,
+                matrial = document.getElementById('mat').value,
+                degre = document.getElementById('nam').value;
+            console.log(firstname);
+            console.log(age);
+            console.log(depart);
+            console.log(stage);
+            console.log(matrial);
+            console.log(degre);
+
+
+            const loginData = {
+                Firstname: firstname,
+                Age: age,
+                Depart: depart,
+                Stage: stage,
+                Matrial: matrial,
+                Degre: degre
+
+            }
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+
+            }
+            fetch('http://127.0.0.1:7000/post', options)
+            console.log(options);
+        }
+    </script>
+
+</body>
+
+</html>

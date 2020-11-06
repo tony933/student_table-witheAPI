@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="/css/app.css">
+
+</head>
+
+<body class="dash">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/table">Disply</a></li>
+        <li><a href="/dash">dashbord</a></li>
+    </ul>
+
+    <table>
+        <tr>
+            <th>The Total Number of Student</th>
+            <th id="totel">
+            </th>
+
+        </tr>
+        <tr>
+            <th> The Total Number of Student that sucsess
+            </th>
+            <th id="pass1">
+
+            </th>
+
+        </tr>
+        <tr>
+            <th>The Total Number of Student that faill</th>
+            <th id="faill1">
+
+
+            </th>
+
+        </tr>
+
+    </table>
+    <script>
+        let pass = 0;
+        let faill = 0
+        var x = fetch('http://127.0.0.1:7000/get')
+            .then(response => response.json())
+            .then((post) => {
+                document.getElementById("totel").innerHTML = post.length;
+                for (let i = 0; i < post.length; i++) {
+
+
+                    if (post[i].nam < 50) {
+                        faill++
+                    } else if (post[i].nam >= 50) {
+                        pass++
+                    }
+                    document.getElementById("pass1").innerHTML = pass;
+                    document.getElementById("faill1").innerHTML = faill;
+                }
+            });
+    </script>
+
+</body>
+
+</html>

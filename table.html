@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="/css/app.css">
+
+</head>
+
+<body class="disply">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/table">Disply</a></li>
+        <li><a href="/dash">dashbord</a></li>
+    </ul>
+    <div id="includedContent"></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name </th>
+                <th>age</th>
+                <th> Department </th>
+                <th>stage</th>
+                <th> material </th>
+                <th>Degree</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+
+        </tbody>
+
+    </table>
+
+    <script>
+        let table = document.getElementById("tbody");
+        var res = ""
+        var x = fetch('http://127.0.0.1:7000/get')
+            .then(response => response.json())
+            .then((post) => {
+                for (let i = 0; i <= post.length; i++) {
+                    if (post[i].nam < 50) {
+                        res = "faill"
+                    } else if (post[i].nam >= 50) {
+                        res = "secssaas"
+                    }
+                    table.innerHTML += `
+                    <tr>
+                        <td>${post[i].firstName}</td>
+                        <td>${post[i].age}</td>
+                        <td>${post[i].dep}</td>
+                        <td>${post[i].sta}</td>
+                        <td>${post[i].mat}</td>
+                        <td>${post[i].nam}</td>
+                        <td>${res}</td>
+
+                    </tr>
+`
+                }
+
+            });
+    </script>
+</body>
+
+</html>
